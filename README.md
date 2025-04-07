@@ -14,7 +14,7 @@ Programação Multiplataforma
 
 ## 🏫 Faculdade
 
-Fatec Artur De Azevedo
+Fatec Arthur De Azevedo
 
 ## 🧰 Tecnologias Utilizadas
 
