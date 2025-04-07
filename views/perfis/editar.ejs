@@ -1,0 +1,41 @@
+<head>
+    <title>Perfis</title>
+</head>
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/menu.ejs', {inAdm: inAdm}) %>
+
+<body style="background-color: #e8f1f7;">
+    <br>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">Editar Perfil</div>
+            <div class="card-body mt-3">
+                <form method="post" action="/perfis/salvar">
+                    <input type="hidden" name="id" value="<%= perfil.id %>">
+                    
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="descricao" id="descricao"
+                            value="<%= perfil.descricao %>" required>
+                        <label for="descricao">Descrição</label>
+                    </div>
+                    
+                    <div class="form-check mb-3">
+                        <input type="checkbox" class="form-check-input" value="true" name="inAdm" id="inAdm"
+                            <%= perfil.inAdm ? 'checked' : '' %>>
+                        <label for="inAdm">É Administrador?</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <button class="btn" type="submit" style="background-color: #2172a3; color: #fff;">
+                            Salvar
+                        </button>
+                        <a href="/perfis" class="btn btn-warning">
+                            Cancelar
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <%- include('../partials/footer.ejs') %>
+</body>

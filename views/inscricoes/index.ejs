@@ -1,0 +1,41 @@
+<head>
+    <title>Inscrições</title>
+</head>
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/menu.ejs', {inAdm: inAdm}) %>
+<body style="background-color: #e8f1f7;">
+<br>
+<div class="container">
+    <a href="/inscricoes/novo" class="btn btn-primary" style="background-color: #2172a3;">Nova Inscrição</a>
+    <br><br>
+    <div class="card">
+        <div class="card-header">
+            Inscrições Cadastradas
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <th class="col-3">Evento</th>
+                    <th class="col-3">Participante</th>
+                    <th class="col-2">Data de Inscrição</th>
+                    <th class="col-1">Ações</th>
+                </thead>
+                <tbody>
+                    <% inscricoes.forEach(inscricao => { %>
+                    <tr>
+                        <td><%= inscricao.evento.nome %></td>
+                        <td><%= inscricao.participante.nome %></td>
+                        <td><%= inscricao.data_inscricao.toLocaleDateString() %></td>
+                        <td>
+                            <a href="/inscricoes/editar/<%= inscricao.id %>" class="btn" style="background-color: #2172a3; color: #fff;">Editar</a>
+                            <a href="/inscricoes/delete/<%= inscricao.id %>" class="btn btn-danger">Excluir</a>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<%- include('../partials/footer.ejs') %>
+</body>

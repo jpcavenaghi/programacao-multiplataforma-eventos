@@ -1,0 +1,38 @@
+<head>
+    <title>Login</title>
+</head>
+<%- include('../partials/header.ejs') %>
+
+    <body style="background-color: #e8f1f7;">
+        <div class="container">
+            <div class="card position-absolute top-50 start-50 translate-middle" style="width: 18rem;">
+                <div class="d-flex justify-content-center card-header text-white font-weight-bold" style="background-color: #2172a3; font-size: 1.5rem;">
+                    LOGIN
+                </div>
+                <div class="card-body">
+                    <form method="post" action="/usuarios/login">
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" name="email" id="email"
+                                placeholder="Digite o seu e-mail">
+                            <label for="email">Digite o seu e-mail</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" name="senha" id="senha"
+                                placeholder="Digite a sua senha">
+                            <label for="senha">Digite a sua senha</label>
+                        </div>
+                        <% if(msg !='' ) {%>
+                            <div class="alert alert-danger">
+                                <%= msg %>
+                            </div>
+                            <%}%>
+                                <div class="d-grid gap-2 col-6 mx-auto">
+                                    <button class="btn" style="background-color: #2172a3; color: #fff;" type="submit">Login</button>
+                                </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <%- include('../partials/footer.ejs') %>
+    </body>

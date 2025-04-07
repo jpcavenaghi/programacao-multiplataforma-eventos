@@ -1,0 +1,43 @@
+<head>
+  <title>Participantes</title>
+</head>
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/menu.ejs', { inAdm: inAdm }) %>
+
+<body style="background-color: #e8f1f7;">
+  <br>
+  <div class="container">
+    <div class="card">
+      <div class="card-header">
+        Editar Participante
+      </div>
+      <div class="card-body">
+        <form method="post" action="/participantes/salvar">
+          <input type="hidden" name="id" value="<%= participante.id %>">
+
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="nome" name="nome" value="<%= participante.nome %>" required>
+            <label for="nome">Nome Completo</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="email" name="email" value="<%= participante.email %>" required>
+            <label for="email">Email</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="tel" class="form-control" id="telefone" name="telefone" value="<%= participante.telefone %>" required>
+            <label for="telefone">Telefone</label>
+          </div>
+
+          <button class="btn btn-primary" style="background-color: #2172a3; color: #fff;" type="submit">
+            Salvar
+          </button>
+          <a href="/participantes" class="btn btn-warning">Cancelar</a>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <%- include('../partials/footer.ejs') %>
+</body>

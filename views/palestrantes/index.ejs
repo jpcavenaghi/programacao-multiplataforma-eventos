@@ -1,0 +1,43 @@
+<head>
+    <title>Palestrantes</title>
+</head>
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/menu.ejs', { inAdm: inAdm }) %>
+
+<body style="background-color: #e8f1f7;">
+<br>
+<div class="container">
+    <a href="/palestrantes/novo" class="btn btn-primary" style="background-color: #2172a3;">Novo Palestrante</a>
+    <br><br>
+    <div class="card">
+        <div class="card-header">
+            Palestrantes Cadastrados
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Biografia</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% palestrantes.forEach(palestrante => { %>
+                    <tr>
+                        <td><%= palestrante.nome %></td>
+                        <td><%= palestrante.biografia %></td>
+                        <td>
+                            <a href="/palestrantes/editar/<%= palestrante.id %>" class="btn" style="background-color: #2172a3; color: #fff;">Editar</a>
+                            <a href="/palestrantes/delete/<%= palestrante.id %>" class="btn btn-danger">Excluir</a>
+                        </td>
+                    </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer.ejs') %>
+</body>

@@ -1,0 +1,52 @@
+<head>
+    <title>Inscrições</title>
+</head>
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/menu.ejs', { inAdm: inAdm }) %>
+
+<body style="background-color: #e8f1f7;">
+    <br>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <%= inscricao ? "Editar Inscrição" : "Nova Inscrição" %>
+            </div>
+            <div class="card-body">
+                <form method="post" action="<%= inscricao ? '/inscricoes/atualizar' : '/inscricoes/' %>">
+                    <% if (inscricao) { %>
+                        <input type="hidden" name="id" value="<%= inscricao.id %>">
+                    <% } %>
+
+                    <div class="form-floating mb-3">
+                        <select class="form-select" name="evento_id" id="evento_id" required>
+                            <option value="">Selecione um evento</option>
+                            <% eventos.forEach(evento => { %>
+                                <option value="<%= evento.id %>" <%= inscricao && inscricao.evento_id == evento.id ? 'selected' : '' %>>
+                                    <%= evento.nome %>
+                                </option>
+                            <% }) %>
+                        </select>
+                        <label for="evento_id">Evento</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <select class="form-select" name="participante_id" id="participante_id" required>
+                            <option value="">Selecione um participante</option>
+                            <% participantes.forEach(participante => { %>
+                                <option value="<%= participante.id %>" <%= inscricao && inscricao.participante_id == participante.id ? 'selected' : '' %>>
+                                    <%= participante.nome %>
+                                </option>
+                            <% }) %>
+                        </select>
+                        <label for="participante_id">Participante</label>
+                    </div>
+
+                    <button class="btn btn-primary" type="submit" style="background-color: #2172a3; color: #fff;">Salvar</button>
+                    <a href="/inscricoes" class="btn btn-warning">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../partials/footer.ejs') %>
+</body>

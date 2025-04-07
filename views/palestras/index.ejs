@@ -1,0 +1,45 @@
+<head>
+    <title>Palestras</title>
+</head>
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/menu.ejs', {inAdm: inAdm}) %>
+
+<body style="background-color: #e8f1f7;">
+<br>
+<div class="container">
+    <a href="/palestras/novo" class="btn btn-primary" style="background-color: #2172a3;">Nova Palestra</a>
+    <br>
+    <br>
+    <div class="card">
+        <div class="card-header">
+            Palestras Cadastradas
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <th class="col-3">Título</th>
+                    <th class="col-2">Evento</th>
+                    <th class="col-2">Palestrante</th>
+                    <th class="col-2">Horário</th>
+                    <th class="col-1">Ações</th>
+                </thead>
+                <tbody>
+                    <% palestras.forEach(palestra => { %>
+                    <tr>
+                        <td><%= palestra.titulo %></td>
+                        <td><%= palestra.evento.nome %></td>
+                        <td><%= palestra.palestrante.nome %></td>
+                        <td><%= palestra.horario %></td>
+                        <td>
+                            <a href="/palestras/editar/<%= palestra.id %>" class="btn"  style="background-color: #2172a3; color: #fff;">Editar</a>
+                            <a href="/palestras/delete/<%= palestra.id %>" class="btn btn-danger">Excluir</a>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<%- include('../partials/footer.ejs') %>
+</body>

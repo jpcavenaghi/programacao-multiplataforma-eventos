@@ -1,0 +1,49 @@
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/menu.ejs', { inAdm: inAdm }) %>
+
+<body style="background-color: #e8f1f7;">
+<br>
+<div class="container">
+    <% if (inAdm) { %>
+        <a href="/eventos/novo" class="btn btn-primary" style="background-color: #2172a3;">Novo Evento</a>
+    <% } %>
+    
+    <br><br>
+    <div class="card">
+        <div class="card-header">
+            Eventos Cadastrados
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <th class="col-2">Nome</th>
+                    <th class="col-2">Data</th>
+                    <th class="col-2">Local</th>
+                    <th class="col-2">Capacidade</th>
+                    <th class="col-3">Descrição</th>
+                    <% if (inAdm) { %> <th class="col-1">Ações</th> <% } %>
+                </thead>
+                <tbody>
+                    <% eventos.forEach(evento => { %>
+                    <tr>
+                        <td><%= evento.nome %></td>
+                        <td><%= evento.data ? new Date(evento.data).toLocaleDateString('pt-BR') : 'Sem data' %></td>
+                        <td><%= evento.local %></td>
+                        <td><%= evento.capacidade %></td>
+                        <td><%= evento.descricao ? evento.descricao : 'Sem descrição' %></td>
+                        <% if (inAdm) { %>
+                            <td>
+                                <a href="/eventos/editar/<%= evento.id %>" class="btn btn-primary" style="background-color: #2172a3; color: #fff;">Editar</a>
+                                <a href="/eventos/delete/<%= evento.id %>" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir este evento?')">Excluir</a>
+                            </td>
+                        <% } %>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer.ejs') %>
+</body>

@@ -1,0 +1,41 @@
+<head>
+    <title>Usuarios</title>
+</head>
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/menu.ejs', { inAdm: inAdm }) %>
+
+<body style="background-color: #e8f1f7;">
+    <br>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">Novo Usuário</div>
+            <div class="card-body">
+                <form method="post" action="/usuarios">
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" name="email" id="email" placeholder="e-mail" required>
+                        <label for="email">E-mail</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" name="senha" id="senha" placeholder="Senha" required>
+                        <label for="senha">Senha</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <select name="perfilId" class="form-select" id="perfilId" required>
+                            <option value="">Selecione um perfil</option>
+                            <% perfis.forEach(perfil => { %>
+                                <option value="<%= perfil.id %>"><%= perfil.descricao %></option>
+                            <% }) %>
+                        </select>
+                        <label for="perfilId">Perfil</label>
+                    </div>
+
+                    <button class="btn" type="submit" style="background-color: #2172a3; color: #fff;">Salvar</button>
+                    <a href="/usuarios" class="btn btn-warning">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    <%- include('../partials/footer.ejs') %>
+</body>

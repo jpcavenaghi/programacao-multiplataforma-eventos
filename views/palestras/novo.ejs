@@ -1,0 +1,64 @@
+<head>
+    <title>Palestras</title>
+</head>
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/menu.ejs', { inAdm: inAdm }) %>
+
+<body style="background-color: #e8f1f7;">
+    <br>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <%= palestra ? "Editar Palestra" : "Nova Palestra" %>
+            </div>
+            <div class="card-body">
+                <form method="post" action="<%= palestra ? '/palestras/salvar' : '/palestras/' %>">
+                    <% if (palestra) { %>
+                        <input type="hidden" name="id" value="<%= palestra.id %>">
+                    <% } %>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="titulo" id="titulo"
+                            value="<%= palestra ? palestra.titulo : '' %>" required>
+                        <label for="titulo">Título</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <select class="form-select" name="evento_id" id="evento_id" required>
+                            <option value="">Selecione um evento</option>
+                            <% eventos.forEach(evento => { %>
+                                <option value="<%= evento.id %>" <%= palestra && palestra.evento_id == evento.id ? 'selected' : '' %>>
+                                    <%= evento.nome %>
+                                </option>
+                            <% }) %>
+                        </select>
+                        <label for="evento_id">Evento</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <select class="form-select" name="palestrante_id" id="palestrante_id" required>
+                            <option value="">Selecione um palestrante</option>
+                            <% palestrantes.forEach(palestrante => { %>
+                                <option value="<%= palestrante.id %>" <%= palestra && palestra.palestrante_id == palestrante.id ? 'selected' : '' %>>
+                                    <%= palestrante.nome %>
+                                </option>
+                            <% }) %>
+                        </select>
+                        <label for="palestrante_id">Palestrante</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="time" class="form-control" name="horario" id="horario"
+                            value="<%= palestra ? palestra.horario : '' %>" required>
+                        <label for="horario">Horário</label>
+                    </div>
+
+                    <button class="btn" type="submit" style="background-color: #2172a3; color: #fff;">Salvar</button>
+                    <a href="/palestras" class="btn btn-warning">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../partials/footer.ejs') %>
+</body>

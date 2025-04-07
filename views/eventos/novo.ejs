@@ -1,0 +1,56 @@
+<%- include('../partials/header.ejs') %>
+    <%- include('../partials/menu.ejs', { inAdm: inAdm }) %>
+
+        <body style="background-color: #e8f1f7;">
+            <br>
+            <div class="container">
+                <div class="card">
+                    <div class="card-header">
+                        <%= evento ? "Editar Evento" : "Novo Evento" %>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action="<%= evento ? '/eventos/atualizar' : '/eventos/' %>">
+                            <% if (evento) { %>
+                                <input type="hidden" name="id" value="<%= evento.id %>">
+                                <% } %>
+
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="nome" name="nome"
+                                            value="<%= evento ? evento.nome : '' %>" required>
+                                        <label for="nome">Nome do Evento</label>
+                                    </div>
+
+                                    <div class="form-floating mb-3">
+                                        <input type="date" class="form-control" id="data" name="data"
+                                            value="<%= evento ? new Date(evento.data).toISOString().split('T')[0] : '' %>"
+                                            required>
+                                        <label for="data">Data</label>
+                                    </div>
+
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="local" name="local"
+                                            value="<%= evento ? evento.local : '' %>" required>
+                                        <label for="local">Local</label>
+                                    </div>
+
+                                    <div class="form-floating mb-3">
+                                        <textarea class="form-control" id="descricao"
+                                            name="descricao"><%= evento ? evento.descricao : '' %></textarea>
+                                        <label for="descricao">Descrição</label>
+                                    </div>
+
+                                    <div class="form-floating mb-3">
+                                        <input type="number" class="form-control" id="capacidade" name="capacidade"
+                                            value="<%= evento ? evento.capacidade : '' %>" required>
+                                        <label for="capacidade">Capacidade</label>
+                                    </div>
+
+                                    <button class="btn btn-primary" style="background-color: #2172a3; color: #fff;" type="submit">Salvar</button>
+                                    <a href="/eventos" class="btn btn-warning">Cancelar</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <%- include('../partials/footer.ejs') %>
+        </body>
